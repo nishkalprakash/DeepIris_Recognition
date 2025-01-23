@@ -1,0 +1,1377 @@
+{
+    "ir_version": 8,
+    "producer_name": "tf2onnx",
+    "producer_version": "1.16.0 5dd776",
+    "domain": "",
+    "model_version": 0,
+    "doc_string": "",
+    "inputs": [
+        {
+            "name": "input_2",
+            "type": 1,
+            "shape": [
+                "dynamic",
+                "dynamic",
+                "dynamic",
+                3
+            ]
+        }
+    ],
+    "outputs": [
+        {
+            "name": "model_1/global_average_pooling2d_1/Mean:0",
+            "type": 1,
+            "shape": [
+                "dynamic",
+                2048,
+                1,
+                1
+            ]
+        }
+    ],
+    "layers": [
+        {
+            "name": "model_1/conv1_conv/Conv2D__6",
+            "type": "Transpose",
+            "inputs": [
+                "input_2"
+            ],
+            "outputs": [
+                "model_1/conv1_conv/Conv2D__6:0"
+            ]
+        },
+        {
+            "name": "Conv__863",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv1_conv/Conv2D__6:0",
+                "Conv__863_weights_fused_bn",
+                "Conv__863_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/pool1_pad/Pad",
+            "type": "Pad",
+            "inputs": [
+                "model_1/conv1_relu/Relu:0",
+                "pad_const__22"
+            ],
+            "outputs": [
+                "model_1/pool1_pad/Pad:0"
+            ]
+        },
+        {
+            "name": "model_1/pool1_pool/MaxPool",
+            "type": "MaxPool",
+            "inputs": [
+                "model_1/pool1_pad/Pad:0"
+            ],
+            "outputs": [
+                "model_1/pool1_pool/MaxPool:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/pool1_pool/MaxPool:0",
+                "model_1/conv2_block1_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block1_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block1_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block1_1_relu/Relu:0",
+                "model_1/conv2_block1_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block1_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block1_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block1_2_relu/Relu:0",
+                "model_1/conv2_block1_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block1_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_0_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/pool1_pool/MaxPool:0",
+                "model_1/conv2_block1_0_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block1_0_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_0_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv2_block1_0_bn/FusedBatchNormV3:0",
+                "model_1/conv2_block1_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block1_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block1_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block1_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block1_out/Relu:0",
+                "model_1/conv2_block2_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block2_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block2_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block2_1_relu/Relu:0",
+                "model_1/conv2_block2_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block2_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block2_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block2_2_relu/Relu:0",
+                "model_1/conv2_block2_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block2_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv2_block1_out/Relu:0",
+                "model_1/conv2_block2_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block2_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block2_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block2_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block2_out/Relu:0",
+                "model_1/conv2_block3_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block3_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block3_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block3_1_relu/Relu:0",
+                "model_1/conv2_block3_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block3_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block3_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block3_2_relu/Relu:0",
+                "model_1/conv2_block3_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv2_block3_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv2_block2_out/Relu:0",
+                "model_1/conv2_block3_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv2_block3_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv2_block3_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv2_block3_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block3_out/Relu:0",
+                "model_1/conv3_block1_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block1_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block1_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block1_1_relu/Relu:0",
+                "model_1/conv3_block1_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block1_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block1_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block1_2_relu/Relu:0",
+                "model_1/conv3_block1_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block1_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_0_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv2_block3_out/Relu:0",
+                "model_1/conv3_block1_0_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block1_0_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_0_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv3_block1_0_bn/FusedBatchNormV3:0",
+                "model_1/conv3_block1_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block1_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block1_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block1_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block1_out/Relu:0",
+                "model_1/conv3_block2_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block2_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block2_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block2_1_relu/Relu:0",
+                "model_1/conv3_block2_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block2_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block2_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block2_2_relu/Relu:0",
+                "model_1/conv3_block2_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block2_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv3_block1_out/Relu:0",
+                "model_1/conv3_block2_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block2_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block2_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block2_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block2_out/Relu:0",
+                "model_1/conv3_block3_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block3_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block3_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block3_1_relu/Relu:0",
+                "model_1/conv3_block3_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block3_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block3_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block3_2_relu/Relu:0",
+                "model_1/conv3_block3_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block3_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv3_block2_out/Relu:0",
+                "model_1/conv3_block3_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block3_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block3_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block3_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block3_out/Relu:0",
+                "model_1/conv3_block4_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block4_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block4_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block4_1_relu/Relu:0",
+                "model_1/conv3_block4_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block4_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block4_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block4_2_relu/Relu:0",
+                "model_1/conv3_block4_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv3_block4_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv3_block3_out/Relu:0",
+                "model_1/conv3_block4_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv3_block4_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv3_block4_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv3_block4_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block4_out/Relu:0",
+                "model_1/conv4_block1_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block1_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block1_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block1_1_relu/Relu:0",
+                "model_1/conv4_block1_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block1_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block1_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block1_2_relu/Relu:0",
+                "model_1/conv4_block1_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block1_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_0_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv3_block4_out/Relu:0",
+                "model_1/conv4_block1_0_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block1_0_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_0_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block1_0_bn/FusedBatchNormV3:0",
+                "model_1/conv4_block1_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block1_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block1_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block1_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block1_out/Relu:0",
+                "model_1/conv4_block2_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block2_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block2_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block2_1_relu/Relu:0",
+                "model_1/conv4_block2_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block2_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block2_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block2_2_relu/Relu:0",
+                "model_1/conv4_block2_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block2_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block1_out/Relu:0",
+                "model_1/conv4_block2_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block2_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block2_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block2_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block2_out/Relu:0",
+                "model_1/conv4_block3_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block3_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block3_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block3_1_relu/Relu:0",
+                "model_1/conv4_block3_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block3_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block3_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block3_2_relu/Relu:0",
+                "model_1/conv4_block3_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block3_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block2_out/Relu:0",
+                "model_1/conv4_block3_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block3_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block3_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block3_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block3_out/Relu:0",
+                "model_1/conv4_block4_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block4_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block4_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block4_1_relu/Relu:0",
+                "model_1/conv4_block4_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block4_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block4_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block4_2_relu/Relu:0",
+                "model_1/conv4_block4_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block4_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block3_out/Relu:0",
+                "model_1/conv4_block4_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block4_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block4_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block4_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block4_out/Relu:0",
+                "model_1/conv4_block5_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block5_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block5_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block5_1_relu/Relu:0",
+                "model_1/conv4_block5_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block5_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block5_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block5_2_relu/Relu:0",
+                "model_1/conv4_block5_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block5_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block4_out/Relu:0",
+                "model_1/conv4_block5_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block5_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block5_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block5_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block5_out/Relu:0",
+                "model_1/conv4_block6_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block6_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block6_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block6_1_relu/Relu:0",
+                "model_1/conv4_block6_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block6_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block6_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block6_2_relu/Relu:0",
+                "model_1/conv4_block6_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv4_block6_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv4_block5_out/Relu:0",
+                "model_1/conv4_block6_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv4_block6_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv4_block6_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv4_block6_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block6_out/Relu:0",
+                "model_1/conv5_block1_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block1_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block1_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block1_1_relu/Relu:0",
+                "model_1/conv5_block1_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block1_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block1_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block1_2_relu/Relu:0",
+                "model_1/conv5_block1_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block1_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_0_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv4_block6_out/Relu:0",
+                "model_1/conv5_block1_0_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block1_0_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_0_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv5_block1_0_bn/FusedBatchNormV3:0",
+                "model_1/conv5_block1_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block1_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block1_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block1_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block1_out/Relu:0",
+                "model_1/conv5_block2_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block2_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block2_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block2_1_relu/Relu:0",
+                "model_1/conv5_block2_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block2_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block2_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block2_2_relu/Relu:0",
+                "model_1/conv5_block2_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block2_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv5_block1_out/Relu:0",
+                "model_1/conv5_block2_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block2_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block2_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block2_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_1_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block2_out/Relu:0",
+                "model_1/conv5_block3_1_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block3_1_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_1_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_1_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block3_1_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_1_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_2_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block3_1_relu/Relu:0",
+                "model_1/conv5_block3_2_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block3_2_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_2_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_2_relu/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block3_2_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_2_relu/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_3_conv/Conv2D",
+            "type": "Conv",
+            "inputs": [
+                "model_1/conv5_block3_2_relu/Relu:0",
+                "model_1/conv5_block3_3_conv/Conv2D_weights_fused_bn",
+                "model_1/conv5_block3_3_conv/Conv2D_bias_fused_bn"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_3_bn/FusedBatchNormV3:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_add/add",
+            "type": "Add",
+            "inputs": [
+                "model_1/conv5_block2_out/Relu:0",
+                "model_1/conv5_block3_3_bn/FusedBatchNormV3:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_add/add:0"
+            ]
+        },
+        {
+            "name": "model_1/conv5_block3_out/Relu",
+            "type": "Relu",
+            "inputs": [
+                "model_1/conv5_block3_add/add:0"
+            ],
+            "outputs": [
+                "model_1/conv5_block3_out/Relu:0"
+            ]
+        },
+        {
+            "name": "model_1/global_average_pooling2d_1/Mean",
+            "type": "GlobalAveragePool",
+            "inputs": [
+                "model_1/conv5_block3_out/Relu:0"
+            ],
+            "outputs": [
+                "model_1/global_average_pooling2d_1/Mean:0"
+            ]
+        }
+    ]
+}
